@@ -39,3 +39,6 @@ o Programa descreve uma sequência incremental e aleatória de acendimento dos L
 * Após realização da jogada, o programa comparará o botão apertado com o LED sorteado. Em caso de erro será emitido um som de “desaprovação”. Caso contrário, o programa incrementará mais uma jogada à sequência e um novo LED será aceso randomicamente. Esse processo se repete até que ocorra um erro na entrada do usuário.  
 
 #### 2. Funções  
+``
+//incluir códigos e comentários
+``
