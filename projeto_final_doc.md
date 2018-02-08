@@ -30,5 +30,11 @@ Para montagem do protótipo foram utilizados os componentes eletrônicos e mater
 > [Esquema Conceitual do Circuito](https://drive.google.com/file/d/1pIjAPfi0ZtfShF7HkoTYcRo8zP9BNWSO/view?usp=sharing)  
 > [Modelo Físico para Montagem](https://drive.google.com/file/d/1H8VBNg8mXC7F4RSL2zne4AFh_F6tHTe3/view?usp=sharing)  
 
-#### Como funciona?  
-![Fluxo](https://docs.google.com/drawings/d/e/2PACX-1vRZKW0jxOO9ucfMxEuuvjl4eVtzpZ2TBwPw_iTYORP05I7W7nTY4lM9pahyK9tfydFZls8-D8K5557r/pub?w=960&h=560)
+### Explorando o Código-fonte  
+#### 1. Como Funciona o Programa?  
+o Programa descreve uma sequência incremental e aleatória de acendimento dos LEDs e o jogador deve segí-la utilizando os botões correspondentes:  
+* As luzes permanecem acesas dizendo que o jogo está pronto.
+* O jogador deve apertar qualquer botão para iniciar o sorteio do primeiro LED.
+* O programa aguarda até que o botão correspondente seja apertado:  é a vez do participante fazer sua jogada.
+* Após realização da jogada, o programa comparará o botão apertado com o LED sorteado. Em caso de erro será emitido um som de “desaprovação”. Caso contrário, o programa incrementará mais uma jogada à sequência e um novo LED será aceso randomicamente. Esse processo se repete até que ocorra um erro na entrada do usuário.
+
