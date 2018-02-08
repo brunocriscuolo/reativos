@@ -29,3 +29,6 @@ Para montagem do protótipo foram utilizados os componentes eletrônicos e mater
 
 > [Esquema Conceitual do Circuito](https://drive.google.com/file/d/1pIjAPfi0ZtfShF7HkoTYcRo8zP9BNWSO/view?usp=sharing)  
 > [Modelo Físico para Montagem](https://drive.google.com/file/d/1H8VBNg8mXC7F4RSL2zne4AFh_F6tHTe3/view?usp=sharing)  
+
+#### Como funciona?  
+![Fluxo](https://docs.google.com/drawings/d/e/2PACX-1vRZKW0jxOO9ucfMxEuuvjl4eVtzpZ2TBwPw_iTYORP05I7W7nTY4lM9pahyK9tfydFZls8-D8K5557r/pub?w=960&h=560)
