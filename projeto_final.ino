@@ -19,7 +19,7 @@
 
 int sequence[100]; //Declaração do vetor que guarda a sequência em que cada LED acende.
 int len = 1; //Variável que controla o tamanho da sequência.
-int key = 0;
+int key = 0; //Variável que armazena valores de leitura Serial (para entradas de teclado e comunicação wireless).
   
 void setup() {
 
@@ -88,13 +88,12 @@ void waitStart(){
     digitalWrite(LED_YELLOW, HIGH);
     digitalWrite(LED_GREEN, HIGH);
     if(digitalRead(BUTTON_RED) == HIGH || digitalRead(BUTTON_BLUE) == HIGH || digitalRead(BUTTON_YELLOW) == HIGH || digitalRead(BUTTON_GREEN) == HIGH) { //Caso qualquer um dos 4 botões seja pressionado...
-      start = true; //Dá inicio ao jogo
+      start = true; //Dá inicio ao jogo.
     }
-    if(Serial.available() > 0) {
-      key = Serial.read();
-      //Serial.println(key, DEC);
-      if(key == 49 || key == 50 || key == 51 || key == 52) {
-        start = true;
+    if(Serial.available() > 0) { //Verifica se a porta Serial está disponível.
+      key = Serial.read(); //Lê a última entrada da porta Serial, armazenada no buffer e atribui a variável global "key".
+      if(key == 49 || key == 50 || key == 51 || key == 52) { //Testa se as entradas do teclado são 1, 2, 3 ou 4 na porta Serial. Qualquer valor inteiro digitado neste intervalo, dá inicio ao jogo.
+        start = true; //Dá inicio ao jogo.
       }
     }
   }
@@ -132,28 +131,28 @@ void toneLed(int ledPin) {
 
 int input() {
   int pin = -1;
-  int in;
+  int in; //Variável que armazena valores de leitura Serial (para entradas de teclado e comunicação wireless), dentro do escopo desta função.
   while(pin == -1) { //Aguarda a entrada do jogador através do botão.
-    if(Serial.available() > 0) {
-      in = Serial.read();
+    if(Serial.available() > 0) { //Verifica se a porta Serial está disponível.
+      in = Serial.read(); //Lê a última entrada da porta Serial, armazenada no buffer e atribui a váriável "in".
       //Serial.println(in, DEC);
     }
-    if(digitalRead(BUTTON_RED) == HIGH || in == 49) { //Condição que verifica se o botão correspondente ao LED vermelho foi pressionado.
+    if(digitalRead(BUTTON_RED) == HIGH || in == 49) { //Condição que verifica se o botão correspondente ao LED vermelho foi pressionado ou se a tecla 1, correspondente ao mesmo LED, foi pressionada no teclado.
       pin = LED_RED; //Atribui o pino do LED vermelho.
       tone(BUZZER, RED_TONE, TONE_DURATION); //Emite o som correspondente a cor de entrada.
       blinkLed(pin); //Permite que o LED pisque assim que a entrada for setada.
     }
-    else if(digitalRead(BUTTON_BLUE) == HIGH || in == 50) { //Condição que verifica se o botão correspondente ao LED azul foi pressionado.
+    else if(digitalRead(BUTTON_BLUE) == HIGH || in == 50) { //Condição que verifica se o botão correspondente ao LED azul foi pressionado ou se a tecla 2, correspondente ao mesmo LED, foi pressionada no teclado.
       pin = LED_BLUE; //Atribui o pino do LED Azul.
       tone(BUZZER, BLUE_TONE, TONE_DURATION); //Emite o som correspondente a cor de entrada.
       blinkLed(pin); //Permite que o LED pisque assim que a entrada for setada.
     }
-    else if(digitalRead(BUTTON_YELLOW) == HIGH || in == 51) { //Condição que verifica se o botão correspondente ao LED amarelo foi pressionado.
+    else if(digitalRead(BUTTON_YELLOW) == HIGH || in == 51) { //Condição que verifica se o botão correspondente ao LED amarelo foi pressionado ou se a tecla 3, correspondente ao mesmo LED, foi pressionada no teclado.
       pin = LED_YELLOW; //Atribui o pino do LED amarelo.
       tone(BUZZER, YELLOW_TONE, TONE_DURATION); //Emite o som correspondente a cor de entrada.
       blinkLed(pin); //Permite que o LED pisque assim que a entrada for setada.
     }
-    else if(digitalRead(BUTTON_GREEN) == HIGH || in == 52) { //Condição que verifica se o botão correspondente ao LED verde foi pressionado.
+    else if(digitalRead(BUTTON_GREEN) == HIGH || in == 52) { //Condição que verifica se o botão correspondente ao LED verde foi pressionado ou se a tecla 4, correspondente ao mesmo LED, foi pressionada no teclado.
       pin = LED_GREEN; //Atribui o pino do LED verde.
       tone(BUZZER, GREEN_TONE, TONE_DURATION); //Emite o som correspondente a cor de entrada.
       blinkLed(pin); //Permite que o LED pisque assim que a entrada for setada.
