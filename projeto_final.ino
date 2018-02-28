@@ -19,8 +19,11 @@
 
 int sequence[100]; //Declaração do vetor que guarda a sequência em que cada LED acende.
 int len = 1; //Variável que controla o tamanho da sequência.
+int key = 0;
   
 void setup() {
+
+  Serial.begin(9600);
    
   pinMode(LED_RED, OUTPUT);
   pinMode(LED_BLUE, OUTPUT);
@@ -39,7 +42,7 @@ void setup() {
 }
 
 void loop() {
-  
+
   if(len == 1){  //Condiciona a chamada da função ao inicio do jogo, isto é, quando o tamanho da sequencia é igual a 1.
     waitStart(); //Função que acende todos os LEDs e aguarda entrada do jogador para iniciar. Qualquer botão inicia o jogo.
     delay(2000); //Aguarda 2s.    
@@ -87,6 +90,13 @@ void waitStart(){
     if(digitalRead(BUTTON_RED) == HIGH || digitalRead(BUTTON_BLUE) == HIGH || digitalRead(BUTTON_YELLOW) == HIGH || digitalRead(BUTTON_GREEN) == HIGH) { //Caso qualquer um dos 4 botões seja pressionado...
       start = true; //Dá inicio ao jogo
     }
+    if(Serial.available() > 0) {
+      key = Serial.read();
+      //Serial.println(key, DEC);
+      if(key == 49 || key == 50 || key == 51 || key == 52) {
+        start = true;
+      }
+    }
   }
   // Apaga todos os LEDs preparando para o inicio do jogo.
   digitalWrite(LED_RED, LOW);
@@ -122,23 +132,28 @@ void toneLed(int ledPin) {
 
 int input() {
   int pin = -1;
+  int in;
   while(pin == -1) { //Aguarda a entrada do jogador através do botão.
-    if(digitalRead(BUTTON_RED) == HIGH) { //Condição que verifica se o botão correspondente ao LED vermelho foi pressionado.
+    if(Serial.available() > 0) {
+      in = Serial.read();
+      //Serial.println(in, DEC);
+    }
+    if(digitalRead(BUTTON_RED) == HIGH || in == 49) { //Condição que verifica se o botão correspondente ao LED vermelho foi pressionado.
       pin = LED_RED; //Atribui o pino do LED vermelho.
       tone(BUZZER, RED_TONE, TONE_DURATION); //Emite o som correspondente a cor de entrada.
       blinkLed(pin); //Permite que o LED pisque assim que a entrada for setada.
     }
-    else if(digitalRead(BUTTON_BLUE) == HIGH) { //Condição que verifica se o botão correspondente ao LED azul foi pressionado.
+    else if(digitalRead(BUTTON_BLUE) == HIGH || in == 50) { //Condição que verifica se o botão correspondente ao LED azul foi pressionado.
       pin = LED_BLUE; //Atribui o pino do LED Azul.
       tone(BUZZER, BLUE_TONE, TONE_DURATION); //Emite o som correspondente a cor de entrada.
       blinkLed(pin); //Permite que o LED pisque assim que a entrada for setada.
     }
-    else if(digitalRead(BUTTON_YELLOW) == HIGH) { //Condição que verifica se o botão correspondente ao LED amarelo foi pressionado.
+    else if(digitalRead(BUTTON_YELLOW) == HIGH || in == 51) { //Condição que verifica se o botão correspondente ao LED amarelo foi pressionado.
       pin = LED_YELLOW; //Atribui o pino do LED amarelo.
       tone(BUZZER, YELLOW_TONE, TONE_DURATION); //Emite o som correspondente a cor de entrada.
       blinkLed(pin); //Permite que o LED pisque assim que a entrada for setada.
     }
-    else if(digitalRead(BUTTON_GREEN) == HIGH) { //Condição que verifica se o botão correspondente ao LED verde foi pressionado.
+    else if(digitalRead(BUTTON_GREEN) == HIGH || in == 52) { //Condição que verifica se o botão correspondente ao LED verde foi pressionado.
       pin = LED_GREEN; //Atribui o pino do LED verde.
       tone(BUZZER, GREEN_TONE, TONE_DURATION); //Emite o som correspondente a cor de entrada.
       blinkLed(pin); //Permite que o LED pisque assim que a entrada for setada.
