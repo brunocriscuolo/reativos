@@ -19,7 +19,7 @@
 
 int sequence[100]; //Declaração do vetor que guarda a sequência em que cada LED acende.
 int len = 1; //Variável que controla o tamanho da sequência.
-int key = 0; //Variável que armazena valores de leitura Serial (para entradas de teclado e comunicação wireless).
+int key = 0; //Variável que armazena valores de leitura Serial (entradas pelo teclado).
   
 void setup() {
 
@@ -135,7 +135,6 @@ int input() {
   while(pin == -1) { //Aguarda a entrada do jogador através do botão.
     if(Serial.available() > 0) { //Verifica se a porta Serial está disponível.
       in = Serial.read(); //Lê a última entrada da porta Serial, armazenada no buffer e atribui a váriável "in".
-      //Serial.println(in, DEC);
     }
     if(digitalRead(BUTTON_RED) == HIGH || in == 49) { //Condição que verifica se o botão correspondente ao LED vermelho foi pressionado ou se a tecla 1, correspondente ao mesmo LED, foi pressionada no teclado.
       pin = LED_RED; //Atribui o pino do LED vermelho.
