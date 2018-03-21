@@ -64,7 +64,7 @@ void loop() {
     }
   }
   
-  len++; //Incrementa o tamano da sequencia em caso de acerto.
+  len++; //Incrementa o tamanho da sequencia em caso de acerto.
   
 }
 
