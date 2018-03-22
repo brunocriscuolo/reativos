@@ -38,6 +38,33 @@ o Programa descreve uma sequência incremental e aleatória de acendimento dos L
 * O programa aguarda até que o botão correspondente seja apertado:  é a vez do participante fazer sua jogada.
 * Após realização da jogada, o programa comparará o botão apertado com o LED sorteado. Em caso de erro será emitido um som de “desaprovação”. Caso contrário, o programa incrementará mais uma jogada à sequência e um novo LED será aceso randomicamente. Esse processo se repete até que ocorra um erro na entrada do usuário.  
 
+
+Abaixo está o trecho de código que demonstra as declarações dos valores constantes de pinagem, tons de frequencia para o toque do Buzzer e variáveis globais utilizadas no desenvolvimento.
+```
+#define BUZZER 12
+
+#define LED_RED    11
+#define LED_BLUE   10
+#define LED_YELLOW 9
+#define LED_GREEN  8
+ 
+#define BUTTON_RED    7
+#define BUTTON_BLUE   6
+#define BUTTON_YELLOW 5 
+#define BUTTON_GREEN  4
+ 
+#define RED_TONE      1200
+#define BLUE_TONE     1600
+#define YELLOW_TONE   2000
+#define GREEN_TONE    2400
+#define TONE_DURATION 200
+#define ERROR_TONE    400
+
+int sequence[100]; //Declaração do vetor que guarda a sequência em que cada LED acende.
+int len = 1; //Variável que controla o tamanho da sequência.
+int key = 0; //Variável que armazena valores de leitura Serial (entradas pelo teclado).
+```
+
 #### 2. Funções  
 A função `setup()` é uma função *default*  do Arduino e parametriza as suas configurações iniciais, como pinagem de entrada e saída. 
 
