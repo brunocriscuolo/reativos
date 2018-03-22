@@ -155,3 +155,44 @@ int input() {
 return pin; //Retorna um número interio correspondente ao pino do LED
 }
 ```
+
+A função `blinkLed(int ledPin)` recebe um parâmetro de valor inteiro, que armazena o pino número correspondente ao pino do LED. Ela é responsável por acender e apagar os LEDs em um intervalo de tempo de 500ms, provocando o efeito de piscagem dos LEDs.
+```
+void blinkLed(int ledPin) {
+  digitalWrite(ledPin, HIGH); //Acende o LED.
+  delay(500); //Aguarda 500ms.
+  digitalWrite(ledPin, LOW); //Apaga o LED.
+  delay(500); //Aguarda 500ms.
+}
+```
+
+A função `toneLed(int ledPin)`, de forma similar, também recebe um parâmetro de valor inteiro, que armazena o pino número correspondente ao pino do LED. Essa função atribui um tom (em valor de frequencia) ao Buzzer de acordo com o LED que estiver aceso. Para cada cor, existe um som correspondente que auxilia na memorização da sequência no jogo. Ela também determina o intervalo de 200ms para emissão desses sons.
+```
+void toneLed(int ledPin) {
+  if(ledPin == LED_RED) {
+    tone(BUZZER, RED_TONE, TONE_DURATION); //Emite o som correspondente a cor do LED durante 200ms.
+  }
+  else if(ledPin == LED_BLUE) {
+    tone(BUZZER, BLUE_TONE, TONE_DURATION); //Emite o som correspondente a cor do LED durante 200ms.
+  }
+  else if(ledPin == LED_YELLOW) {
+    tone(BUZZER, YELLOW_TONE, TONE_DURATION); //Emite o som correspondente a cor do LED durante 200ms.
+  }
+  else if(ledPin == LED_GREEN) {
+    tone(BUZZER, GREEN_TONE, TONE_DURATION); //Emite o som correspondente a cor do LED durante 200ms.
+  } 
+}
+```
+
+Por último, a função `error()` é responsável por emitir o som de “desaprovação” e piscar ininterruptamente o LED vermelho, indicado ao jogador que a sequência não foi reproduzida da maneira correta.
+```
+void error() {
+  while (true) {
+    tone(BUZZER, ERROR_TONE, TONE_DURATION); //Aciona o BUZZER com som de erro por 200ms.
+    digitalWrite(LED_RED, LOW); //Apaga o LED.
+    delay(200); //Aguarda 200ms.
+    digitalWrite(LED_RED, HIGH); //Acende o LED.
+    delay(200); //Aguarda 200ms
+  }
+}
+```
