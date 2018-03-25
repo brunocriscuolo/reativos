@@ -225,4 +225,4 @@ void error() {
 ```
 ### Demonstração
 Acesse o link abaixo contendo o vídeo publicado para entender, na prática, como funciona o jogo e qual o resultado do projeto.
-> [Video demonstrativo](https://drive.google.com/file/d/1pIjAPfi0ZtfShF7HkoTYcRo8zP9BNWSO/view?usp=sharing)
+> [Video demonstrativo](https://www.youtube.com/watch?v=4uFDm0EGkhQ)
